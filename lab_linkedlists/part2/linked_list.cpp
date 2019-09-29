@@ -113,8 +113,21 @@ void remove(Node*& head, int oldKey) {
  * POST: else a new Node (with key=newKey) is right after the Node with key = oldKey.
  */
 void insert_after(Node* head, int oldKey, int newKey){
-  // ******** WRITE YOUR CODE HERE ********
-
+    if(head == NULL) {
+        return;
+    }
+    Node* curr = head;
+    while(curr->key != oldKey && curr->next != NULL) {
+        curr = curr->next;
+    }
+    if(curr->key == oldKey) {
+        Node* temp = curr->next;
+        curr->next = new Node;
+        curr->next->key = newKey;
+        curr->next->next = temp;
+        temp = NULL;
+    }
+    curr = NULL;
 }
 
 /** 
@@ -128,7 +141,35 @@ void insert_after(Node* head, int oldKey, int newKey){
  * For example: [1, 2] and [3, 4, 5] would return [1, 3, 2, 4, 5]
  */
 Node* interleave(Node* list1, Node* list2){
-  // ******** WRITE YOUR CODE HERE ********
-  return NULL;  // ******** DELETE THIS LINE ********
+    Node* head = new Node;
+    Node* curr = head;
+    while(list1 != NULL && list2 != NULL) {
+        curr->next = new Node;
+        curr->next->key = list1->key;
+        curr->next->next = NULL;
+        curr = curr->next;
+        list1 = list1->next;
 
+        curr->next = new Node;
+        curr->next->key = list2->key;
+        curr->next->next = NULL;
+        curr = curr->next;
+        list2 = list2->next;
+    }
+    while(list1 != NULL) {
+        curr->next = new Node;
+        curr->next->key = list1->key;
+        curr->next->next = NULL;
+        curr = curr->next;
+        list1 = list1->next;
+    }
+    while(list2 != NULL) {
+        curr->next = new Node;
+        curr->next->key = list2->key;
+        curr->next->next = NULL;
+        curr = curr->next;
+        list2 = list2->next;
+    }
+    curr = NULL;
+    return head->next;
 }
