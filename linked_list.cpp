@@ -89,11 +89,8 @@ void remove(Node*& head, int oldKey) {
     if(head == NULL) {
         return;
     }
-    if(head->next == NULL && head->key == oldKey) {
+    if(head->key == oldKey) {
         delete head;
-        head = NULL;
-        return;
-    } else if(head->next == NULL) {
         return;
     }
     Node* curr = head;
