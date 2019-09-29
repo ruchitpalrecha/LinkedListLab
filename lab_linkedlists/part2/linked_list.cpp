@@ -70,6 +70,7 @@ void delete_last_element(Node*& head){
     }
     delete curr->next;
     curr->next = NULL;
+    curr = NULL;
 }
 
 /**
@@ -82,8 +83,24 @@ void delete_last_element(Node*& head){
  * POST: head is the new first Node of the linked_list, if updated
  */ 
 void remove(Node*& head, int oldKey) {
-  // ******** WRITE YOUR CODE HERE ********
-
+    if(head->next == NULL && head->key == oldKey) {
+        delete head;
+        head = NULL;
+        return;
+    } else if(head->next == NULL) {
+        return;
+    }
+    Node* curr = head;
+    while(curr->next->key != oldKey && curr->next->next != NULL) {
+        curr = curr->next;
+    }
+    if(curr->next->key == oldKey) {
+        Node* temp = curr->next;
+        curr->next = curr->next->next;
+        delete temp;
+        temp = NULL;
+    }
+    curr = NULL;
 }
 
 /**
