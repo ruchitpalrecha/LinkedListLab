@@ -59,6 +59,9 @@ std::vector<int> to_vector(Node* head) {
  * POST: else head remains the first Node in the linked_list
  */
 void delete_last_element(Node*& head){
+    if(head == NULL) {
+        return;
+    }
     if(head->next == NULL) {
         delete head;
         head = NULL;
@@ -83,6 +86,9 @@ void delete_last_element(Node*& head){
  * POST: head is the new first Node of the linked_list, if updated
  */ 
 void remove(Node*& head, int oldKey) {
+    if(head == NULL) {
+        return;
+    }
     if(head->next == NULL && head->key == oldKey) {
         delete head;
         head = NULL;
