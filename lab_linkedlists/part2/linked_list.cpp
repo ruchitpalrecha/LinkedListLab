@@ -59,8 +59,17 @@ std::vector<int> to_vector(Node* head) {
  * POST: else head remains the first Node in the linked_list
  */
 void delete_last_element(Node*& head){
-  // ******** WRITE YOUR CODE HERE ********
-
+    if(head->next == NULL) {
+        delete head;
+        head = NULL;
+        return;
+    }
+    Node* curr = head;
+    while(curr->next->next != NULL) {
+      curr = curr -> next;
+    }
+    delete curr->next;
+    curr->next = NULL;
 }
 
 /**
